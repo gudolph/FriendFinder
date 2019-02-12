@@ -32,7 +32,7 @@
             <form>
                 <div class="form-group">
                     <label for="question1">Do you</label>
-                    <select class="form-control" id="question1">
+                    <select class="chosen-select" id="question1">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -48,7 +48,7 @@
             <form>
                 <div class="form-group">
                     <label for="question2">Do you:</label>
-                    <select class="form-control" id="question2">
+                    <select class="chosen-select" id="question2">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -63,7 +63,7 @@
             <form>
                 <div class="form-group">
                     <label for="question3">Do you:</label>
-                    <select class="form-control" id="question3">
+                    <select class="chosen-select" id="question3">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -78,7 +78,7 @@
             <form>
                 <div class="form-group">
                     <label for="question4">Do you:</label>
-                    <select class="form-control" id="question4">
+                    <select class="chosen-select" id="question4">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -93,7 +93,7 @@
             <form>
                 <div class="form-group">
                     <label for="question5">Do you:</label>
-                    <select class="form-control" id="question5">
+                    <select class="chosen-select" id="question5">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -108,7 +108,7 @@
             <form>
                 <div class="form-group">
                     <label for="question6">Do you:</label>
-                    <select class="form-control" id="question6">
+                    <select class="chosen-select" id="question6">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -123,7 +123,7 @@
             <form>
                 <div class="form-group">
                     <label for="question7">Do you:</label>
-                    <select class="form-control" id="question7">
+                    <select class="chosen-select" id="question7">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -137,7 +137,7 @@
             <form>
                 <div class="form-group">
                     <label for="question8">Do you:</label>
-                    <select class="form-control" id="question8">
+                    <select class="chosen-select" id="question8">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -151,7 +151,7 @@
             <form>
                 <div class="form-group">
                     <label for="question9">Do you:</label>
-                    <select class="form-control" id="question9">
+                    <select class="chosen-select" id="question9">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -165,7 +165,7 @@
             <form>
                 <div class="form-group">
                     <label for="question10">Do you:</label>
-                    <select class="form-control" id="question10">
+                    <select class="chosen-select" id="question10">
                         <option>1 (Strongly disagree)</option>
                         <option>2</option>
                         <option>3 (Neither agree or disagree)</option>
@@ -174,11 +174,11 @@
                     </select>
                 </div>
             </form>
-            <button type="submit" class="btn btn-info" value="Submit Button" data-toggle="modal" data-target="#myModal">Submit
+            <button type="submit" class="btn btn-info" value="Submit Button" data-toggle="modal" data-target="#results-modal">Submit
                 Answers</button>
     </div>
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="results-modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -187,10 +187,9 @@
                     <h4>Your answers will suffice.</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Your answers have been assessed and an appropriate match found.</p>
+                    <p>Your answers have been assessed and an appropriate match found:</p>
                     <h3 id="match-name"></h3>
-                    <img id="match-img" src="#" alt="">
-                  </div>
+                    <img id="match-img" src="#">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -208,8 +207,6 @@
     <script type="text/javascript">
         $("#submit").on("click", function (event) {
             event.preventDefault();
-
-            // Form validation
             function validateForm() {
                 var isValid = true;
                 $(".form-control").each(function () {
@@ -245,7 +242,7 @@
                 }
                 var url = window.location.origin;
                 // AJAX post the data to the friends API.
-                $.post(url + "/api/friends", newFriend, function (data) {
+                $.post("/api/friends", newFriend, function (data) {
 
                     $("#match-name").text(data.name);
                     $("#match-img").attr("src", data.photo);

@@ -27,5 +27,7 @@ module.exports = function (app) {
                 minDifference = totalDifference;
             }
         }
+        friends.push(newFriend);
+        res.json(friends[friendIndex]);
     })
 };
